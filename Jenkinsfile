@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build WAR') {
             steps {
-                sh 'mvn clean package'
+                dir('backend') {
+                    sh 'mvn clean package'
+                }
             }
         }
         stage('Build Docker Image') {
