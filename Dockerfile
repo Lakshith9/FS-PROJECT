@@ -1,5 +1,7 @@
-FROM tomcat:10.1-jdk17
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+FROM node:18
+WORKDIR /app
+COPY backend/package*.json ./
+RUN npm install
+COPY backend/ .
+EXPOSE 3000
+CMD ["node", "server.js"]
